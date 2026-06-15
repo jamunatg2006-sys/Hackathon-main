@@ -1,0 +1,209 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: theme('colors.cyber.light') theme('colors.cyber.navy');
+  }
+
+  *::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: theme('colors.cyber.navy');
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: theme('colors.cyber.light');
+    border-radius: 4px;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background-color: theme('colors.cyber.cyan');
+  }
+
+  body {
+    @apply bg-cyber-black text-gray-100 font-sans antialiased;
+    background-image:
+      radial-gradient(ellipse at 25% 30%, rgba(255, 23, 68, 0.18) 0%, transparent 42%),
+      radial-gradient(ellipse at 80% 65%, rgba(24, 215, 255, 0.08) 0%, transparent 38%),
+      linear-gradient(180deg, #070306 0%, #100409 48%, #050306 100%);
+  }
+}
+
+@layer components {
+  .glass-panel {
+    @apply bg-cyber-panel/75 backdrop-blur-xl border border-cyber-red/25 rounded-xl shadow-glass;
+    box-shadow: 0 0 0 1px rgba(255, 23, 68, 0.08), 0 18px 55px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  }
+
+  .cyber-card {
+    @apply bg-gradient-to-br from-cyber-navy/90 to-cyber-panel/90 border border-cyber-red/25 rounded-xl p-6 transition-all duration-300;
+  }
+
+  .cyber-card:hover {
+    @apply border-cyber-red/60 shadow-glow;
+    transform: translateY(-2px);
+  }
+
+  .cyber-btn {
+    @apply px-6 py-3 rounded-lg font-semibold transition-all duration-200 flex items-center gap-2 justify-center;
+  }
+
+  .cyber-btn-primary {
+    @apply bg-cyber-red text-white hover:bg-cyber-red-bright shadow-glow-red;
+    text-shadow: 0 0 10px rgba(255,255,255,0.38);
+  }
+
+  .cyber-btn-danger {
+    @apply bg-cyber-red text-white hover:bg-cyber-red-bright shadow-glow-red hover:shadow-none;
+  }
+
+  .cyber-btn-secondary {
+    @apply bg-cyber-navy/90 text-gray-100 hover:bg-cyber-panel border border-cyber-red/40;
+  }
+
+  .cyber-input {
+    @apply w-full px-4 py-3 bg-black/45 border border-cyber-red/35 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-cyber-red focus:shadow-glow transition-all duration-200;
+  }
+
+  .severity-critical {
+    @apply bg-cyber-red/20 border-l-4 border-cyber-red text-cyber-red;
+  }
+
+  .severity-high {
+    @apply bg-cyber-orange/20 border-l-4 border-cyber-orange text-cyber-orange;
+  }
+
+  .severity-medium {
+    @apply bg-cyber-yellow/20 border-l-4 border-cyber-yellow text-cyber-yellow;
+  }
+
+  .severity-low {
+    @apply bg-cyber-green/20 border-l-4 border-cyber-green text-cyber-green;
+  }
+
+  .terminal {
+    @apply bg-black/70 border border-cyber-red/30 rounded-lg p-4 font-mono text-sm overflow-auto;
+  }
+
+  .terminal-line {
+    @apply text-gray-400 leading-relaxed;
+  }
+
+  .terminal-success {
+    @apply text-cyber-green;
+  }
+
+  .terminal-error {
+    @apply text-cyber-red;
+  }
+
+  .terminal-info {
+    @apply text-cyber-cyan;
+  }
+
+  .terminal-warning {
+    @apply text-cyber-orange;
+  }
+
+  .scanning-overlay {
+    @apply absolute inset-0 bg-gradient-to-b from-transparent via-cyber-red/10 to-transparent animate-scan pointer-events-none;
+  }
+
+  .progress-bar {
+    @apply h-2 bg-black/60 rounded-full overflow-hidden border border-cyber-red/20;
+  }
+
+  .progress-bar-fill {
+    @apply h-full bg-gradient-to-r from-cyber-red via-cyber-red-bright to-cyber-cyan transition-all duration-500 ease-out;
+    box-shadow: 0 0 18px rgba(255, 23, 68, 0.75);
+  }
+
+  .stat-card {
+    @apply glass-panel p-5 flex flex-col gap-2;
+  }
+
+  .terminal-window {
+    @apply bg-black/75 rounded-lg border border-cyber-red/30 overflow-hidden backdrop-blur-lg;
+    box-shadow: inset 0 0 24px rgba(255, 23, 68, 0.08), 0 18px 45px rgba(0, 0, 0, 0.5);
+  }
+
+  .terminal-header {
+    @apply bg-cyber-navy/95 px-4 py-2 flex items-center gap-2 border-b border-cyber-red/25;
+  }
+
+  .terminal-dot {
+    @apply w-3 h-3 rounded-full;
+  }
+
+  .gauge-container {
+    @apply relative w-48 h-24 mx-auto;
+  }
+
+  .modal-overlay {
+    @apply fixed inset-0 bg-black/75 backdrop-blur-sm flex items-center justify-center z-50;
+  }
+
+  .modal-content {
+    @apply glass-panel max-w-lg w-full mx-4 p-6;
+  }
+}
+
+@layer utilities {
+  .text-glow-green {
+    color: #fff;
+    text-shadow: 0 0 10px theme('colors.cyber.red'), 0 0 24px theme('colors.cyber.red'), 0 0 45px rgba(255, 23, 68, 0.7);
+  }
+
+  .text-glow-red {
+    text-shadow: 0 0 10px theme('colors.cyber.red'), 0 0 26px theme('colors.cyber.red');
+  }
+
+  .hex-grid {
+    background-image:
+      linear-gradient(30deg, rgba(255, 23, 68, 0.13) 12%, transparent 12.5%, transparent 87%, rgba(255, 23, 68, 0.13) 87.5%, rgba(255, 23, 68, 0.13)),
+      linear-gradient(150deg, rgba(255, 23, 68, 0.13) 12%, transparent 12.5%, transparent 87%, rgba(255, 23, 68, 0.13) 87.5%, rgba(255, 23, 68, 0.13)),
+      linear-gradient(30deg, rgba(255, 23, 68, 0.13) 12%, transparent 12.5%, transparent 87%, rgba(255, 23, 68, 0.13) 87.5%, rgba(255, 23, 68, 0.13)),
+      linear-gradient(150deg, rgba(255, 23, 68, 0.13) 12%, transparent 12.5%, transparent 87%, rgba(255, 23, 68, 0.13) 87.5%, rgba(255, 23, 68, 0.13));
+    background-size: 104px 60px;
+    background-position: 0 0, 0 0, 52px 30px, 52px 30px;
+  }
+
+  .boot-overlay {
+    @apply fixed inset-0 z-[100] flex items-center justify-center overflow-hidden bg-cyber-black transition-all duration-700 ease-in-out;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .boot-overlay.fade-out {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .boot-title {
+    letter-spacing: 0.08em;
+    text-shadow: 0 0 18px rgba(255, 23, 68, 0.95), 0 0 60px rgba(255, 23, 68, 0.55);
+  }
+
+  .bubble {
+    @apply absolute rounded-full border border-cyber-red/35 bg-cyber-red/10 backdrop-blur-sm;
+    box-shadow: inset 0 0 18px rgba(255, 255, 255, 0.08), 0 0 25px rgba(255, 23, 68, 0.22);
+  }
+
+  .animate-typing {
+    overflow: hidden;
+    white-space: nowrap;
+    animation: typing 2s steps(40, end);
+  }
+
+  @keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+}
